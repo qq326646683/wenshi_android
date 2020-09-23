@@ -1,0 +1,2 @@
+include ':app', ':LaunchStarter'
+rootProject.name = "wenshi_android"
