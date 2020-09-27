@@ -4,5 +4,8 @@ class ResponseModel<T>(
     val obj: T,
     val objs: List<T>,
     val status: String,
-    val message: String
+    val message: String,
+
+
+    val isSuccess: Boolean = "success".equals(status)
 )

@@ -14,6 +14,8 @@ import com.jinxian.wenshi.module_user.model.UserLoginModel
 import com.jinxian.wenshi.module_user.model.UserModel
 import com.jinxian.wenshi.module_user.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -57,10 +59,12 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
     }
 
     private fun login() {
-        mViewModel.login(mUserLoginModel).observe(this, Observer<ResponseModel<UserModel>> {
-            print("结果")
-//            print(it)
-        })
+        mViewModel.login(mUserLoginModel)
+//        mViewModel.mUserModel.observe(this, Observer {
+//            infoToast(it.toString())
+//            finish()
+//        })
+
     }
 
 

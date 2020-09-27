@@ -5,6 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.jinxian.wenshi.base.viewmodel.BaseViewModel
 import com.jinxian.wenshi.data.http.ResponseModel
+import com.jinxian.wenshi.ext.infoToast
+import com.jinxian.wenshi.ext.otherwise
+import com.jinxian.wenshi.ext.yes
+import com.jinxian.wenshi.module_user.activity.LoginActivity
 import com.jinxian.wenshi.module_user.model.UserLoginModel
 import com.jinxian.wenshi.module_user.model.UserLoginReqModel
 import com.jinxian.wenshi.module_user.model.UserModel
@@ -14,13 +18,23 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
 
     val mUserModel = MutableLiveData<UserModel>()
 
-    fun login(userLoginModel: UserLoginModel): LiveData<ResponseModel<UserModel>> = emit {
-        mUserRepository.login(
-            UserLoginReqModel(
-                userLoginModel.phone.get()!!,
-                userLoginModel.password.get()!!
+    fun login(userLoginModel: UserLoginModel) {
+        launch {
+            val response: ResponseModel<UserModel> = mUserRepository.login(
+                UserLoginReqModel(
+                    userLoginModel.phone.get()!!,
+                    userLoginModel.password.get()!!
+                )
             )
-        )
+
+            (response.isSuccess).yes {
+                mUserModel.value = response.obj
+
+            }.otherwise {
+                infoToast(response.message)
+            }
+
+        }
 
     }
 

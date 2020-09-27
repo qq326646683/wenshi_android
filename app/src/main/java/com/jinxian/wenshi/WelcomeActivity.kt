@@ -8,15 +8,13 @@ import com.jinxian.wenshi.databinding.ActivityWelcomeBinding
 import com.jinxian.wenshi.ext.getVersionName
 import com.jinxian.wenshi.ext.runWithPermissions
 import com.jinxian.wenshi.ext.startActivity
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
     override fun getLayoutId(): Int = R.layout.activity_welcome
 
     override fun initView() {
-        GlobalScope.launch {
+        GlobalScope.launch(Dispatchers.Main) {
             delay(2000L)
             askForPermission()
         }
