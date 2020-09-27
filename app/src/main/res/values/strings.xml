@@ -4,4 +4,8 @@
     <string name="login">登录</string>
     <string name="phone">请输入手机号</string>
     <string name="password">请输入密码</string>
+    <string name="phone_not_null">手机号不能为空</string>
+    <string name="password_not_null">密码不能为空</string>
+
+
 </resources>
