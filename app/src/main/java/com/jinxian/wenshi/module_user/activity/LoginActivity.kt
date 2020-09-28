@@ -5,6 +5,7 @@ import androidx.lifecycle.lifecycleScope
 import com.jinxian.wenshi.R
 import com.jinxian.wenshi.base.activity.BaseDataBindVMActivity
 import com.jinxian.wenshi.base.viewmodel.BaseViewModel
+import com.jinxian.wenshi.config.Settings
 import com.jinxian.wenshi.data.http.ResponseModel
 import com.jinxian.wenshi.databinding.ActivityLoginBinding
 import com.jinxian.wenshi.ext.infoToast
@@ -12,6 +13,7 @@ import com.jinxian.wenshi.ext.otherwise
 import com.jinxian.wenshi.ext.yes
 import com.jinxian.wenshi.module_user.model.UserLoginModel
 import com.jinxian.wenshi.module_user.model.UserModel
+import com.jinxian.wenshi.module_user.viewmodel.UserInfoUI
 import com.jinxian.wenshi.module_user.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +22,6 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
-
     private val mViewModel: UserViewModel by viewModel()
 
     private val mUserLoginModel: UserLoginModel by lazy { UserLoginModel() }
@@ -37,6 +38,7 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
 
     override fun initData() {
         mDataBind.userLoginModel = mUserLoginModel
+        mDataBind.mUserModel = UserInfoUI.mUserModel.value
     }
 
     private fun clickLogin() {
@@ -61,7 +63,8 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
     private fun login() {
         mViewModel.login(mUserLoginModel)
 //        mViewModel.mUserModel.observe(this, Observer {
-//            infoToast(it.toString())
+//            infoToast("用户信息token" + it.token)
+//            Settings.Account.token = it.token
 //            finish()
 //        })
 

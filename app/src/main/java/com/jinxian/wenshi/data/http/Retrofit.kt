@@ -2,6 +2,7 @@ package com.jinxian.wenshi.data.http
 
 import android.util.Log
 import com.jinxian.wenshi.BuildConfig
+import com.jinxian.wenshi.data.http.interceptor.TokenInterceptor
 import com.jinxian.wenshi.module_user.api.UserApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,6 +23,7 @@ val httpLoggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingIntercep
 }
 
 val okHttpClient = OkHttpClient.Builder()
+    .addInterceptor(TokenInterceptor())
     .connectTimeout(TIMT_OUT, TimeUnit.SECONDS)
     .writeTimeout(TIMT_OUT, TimeUnit.SECONDS)
     .readTimeout(TIMT_OUT, TimeUnit.SECONDS)

@@ -1,6 +1,4 @@
 package com.jinxian.wenshi.module_user.viewmodel
-
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.jinxian.wenshi.base.viewmodel.BaseViewModel
@@ -14,9 +12,11 @@ import com.jinxian.wenshi.module_user.model.UserLoginReqModel
 import com.jinxian.wenshi.module_user.model.UserModel
 import com.jinxian.wenshi.module_user.repository.UserRepository
 
-class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel() {
-
+object UserInfoUI {
     val mUserModel = MutableLiveData<UserModel>()
+}
+
+class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel() {
 
     fun login(userLoginModel: UserLoginModel) {
         launch {
@@ -27,9 +27,9 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
                 )
             )
 
-            (response.isSuccess).yes {
-                mUserModel.value = response.obj
-
+            (response.status == "success").yes {
+                infoToast("成功")
+                UserInfoUI.mUserModel.value = response.obj
             }.otherwise {
                 infoToast(response.message)
             }
@@ -40,7 +40,7 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
 
     fun getUserInfo() {
         launch {
-            mUserModel.value = mUserRepository.getUserInfo().obj
+            UserInfoUI.mUserModel.value = mUserRepository.getUserInfo().obj
         }
     }
 

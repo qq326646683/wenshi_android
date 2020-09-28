@@ -7,6 +7,10 @@
         <variable
             name="userLoginModel"
             type="com.jinxian.wenshi.module_user.model.UserLoginModel" />
+
+        <variable
+            name="mUserModel"
+            type="com.jinxian.wenshi.module_user.model.UserModel" />
     </data>
 
     <LinearLayout
@@ -85,5 +89,9 @@
             android:textColor="@drawable/selector_login_text_color"
             android:textSize="@dimen/sp_16" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{mUserModel.phone}"/>
     </LinearLayout>
 </layout>
