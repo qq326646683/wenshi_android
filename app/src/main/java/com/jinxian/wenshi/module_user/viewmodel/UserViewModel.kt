@@ -1,5 +1,6 @@
 package com.jinxian.wenshi.module_user.viewmodel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.jinxian.wenshi.base.viewmodel.BaseViewModel
 import com.jinxian.wenshi.data.http.ResponseModel
@@ -28,7 +29,6 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
             )
 
             (response.status == "success").yes {
-                infoToast("成功")
                 UserInfoUI.mUserModel.value = response.obj
             }.otherwise {
                 infoToast(response.message)

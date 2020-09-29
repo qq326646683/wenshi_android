@@ -7,5 +7,9 @@
     <string name="phone_not_null">手机号不能为空</string>
     <string name="password_not_null">密码不能为空</string>
 
+    <string name="home_bottom_home">首页</string>
+    <string name="home_bottom_discover">发现</string>
+    <string name="home_bottom_mine">我的</string>
+
 
 </resources>

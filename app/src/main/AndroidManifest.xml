@@ -28,7 +28,7 @@
         </activity>
 
 
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".module_main.activity.MainActivity"/>
         <activity android:name=".module_user.activity.LoginActivity"/>
     </application>
 

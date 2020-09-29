@@ -38,7 +38,7 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
 
     override fun initData() {
         mDataBind.userLoginModel = mUserLoginModel
-        mDataBind.mUserModel = UserInfoUI.mUserModel.value
+
     }
 
     private fun clickLogin() {
@@ -62,12 +62,10 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
 
     private fun login() {
         mViewModel.login(mUserLoginModel)
-//        mViewModel.mUserModel.observe(this, Observer {
-//            infoToast("用户信息token" + it.token)
-//            Settings.Account.token = it.token
-//            finish()
-//        })
-
+        UserInfoUI.mUserModel.observe(this, Observer {
+            Settings.Account.token = it.token
+            finish()
+        })
     }
 
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_home"
+        android:title="@string/home_bottom_home" />
+    <item
+        android:id="@+id/action_discover"
+        android:title="@string/home_bottom_discover" />
+    <item
+        android:id="@+id/action_mine"
+        android:title="@string/home_bottom_mine" />
+</menu>
