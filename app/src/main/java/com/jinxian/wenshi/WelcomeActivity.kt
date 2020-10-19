@@ -1,5 +1,6 @@
 package com.jinxian.wenshi
 
+import androidx.lifecycle.lifecycleScope
 import com.afollestad.assent.AssentResult
 import com.afollestad.assent.Callback
 import com.afollestad.assent.Permission
@@ -29,21 +30,17 @@ class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
     }
 
     private fun askForPermission() {
-        runWithPermissions(
-            Permission.READ_PHONE_STATE, Permission.READ_EXTERNAL_STORAGE,
-            Permission.WRITE_EXTERNAL_STORAGE, granted = object : Callback {
-                override fun invoke(result: AssentResult) {
-                    (isLogin()).yes {
-                        getUserInfo()
-                    }
-                    startActivity<MainActivity>()
-                }
-            }, denied = object : Callback {
-                override fun invoke(result: AssentResult) {
-                    finish()
-                }
+        lifecycleScope.launch {
+            runWithPermissions(
+                Permission.READ_PHONE_STATE, Permission.READ_EXTERNAL_STORAGE,
+                Permission.WRITE_EXTERNAL_STORAGE
+            ).yes {
+                getUserInfo()
+                startActivity<MainActivity>()
+            }.otherwise {
+                finish()
             }
-        )
+        }
     }
 
     private fun getUserInfo() {

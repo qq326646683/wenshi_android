@@ -1,24 +1,18 @@
 package com.jinxian.wenshi.ext
 
 import android.app.Activity
-import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import com.afollestad.assent.rationale.RationaleHandler
 import com.afollestad.assent.*
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
 
-fun Activity.runWithPermissions(
+suspend fun Activity.runWithPermissions(
     vararg permissions: Permission,
     requestCode: Int = 40,
     rationaleHandler: RationaleHandler? = null,
-    granted: Callback,
-    denied: Callback
-) {
+): Boolean = suspendCancellableCoroutine { continuation ->
     isAllGranted(*permissions).yes {
-        val permissionList = permissions.asList()
-        val grantResultList = IntArray(permissionList.size)
-        permissionList.forEachIndexed { index, permission ->
-            grantResultList[index] = PERMISSION_GRANTED
-        }
-        granted.invoke(AssentResult(permissionList, grantResultList))
+        continuation.resume(true)
     }.otherwise {
         askForPermissions(
             *permissions,
@@ -26,10 +20,11 @@ fun Activity.runWithPermissions(
             rationaleHandler = rationaleHandler
         ) {
             it.isAllGranted(*permissions).yes {
-                granted.invoke(it)
+                continuation.resume(true)
             }.otherwise {
-                denied.invoke(it)
+                continuation.resume(false)
             }
+
         }
     }
 }

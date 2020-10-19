@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-private const val BASE_URL = "http://172.16.0.104:3000"
+private const val BASE_URL = "http://192.168.3.38:3000"
 private const val TIMT_OUT = 60L
 private const val TAG = "wenshi"
 
