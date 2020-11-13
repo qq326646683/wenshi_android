@@ -1,24 +1,17 @@
 package com.jinxian.wenshi.module_user.activity
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import com.jinxian.wenshi.R
 import com.jinxian.wenshi.base.activity.BaseDataBindVMActivity
 import com.jinxian.wenshi.base.viewmodel.BaseViewModel
 import com.jinxian.wenshi.config.Settings
-import com.jinxian.wenshi.data.http.ResponseModel
 import com.jinxian.wenshi.databinding.ActivityLoginBinding
-import com.jinxian.wenshi.ext.infoToast
 import com.jinxian.wenshi.ext.otherwise
 import com.jinxian.wenshi.ext.yes
 import com.jinxian.wenshi.module_user.model.UserLoginModel
-import com.jinxian.wenshi.module_user.model.UserModel
 import com.jinxian.wenshi.module_user.viewmodel.UserInfoUI
 import com.jinxian.wenshi.module_user.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>() {
