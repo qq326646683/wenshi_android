@@ -3,6 +3,7 @@ package com.jinxian.wenshi.data.http
 import android.util.Log
 import com.jinxian.wenshi.BuildConfig
 import com.jinxian.wenshi.data.http.interceptor.TokenInterceptor
+import com.jinxian.wenshi.module_main.api.MainApi
 import com.jinxian.wenshi.module_user.api.UserApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,7 +11,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-private const val BASE_URL = "http://192.168.3.38:3000"
+private const val BASE_URL = "http://172.16.0.104:3000"
+//private const val BASE_URL = "http://192.168.3.38:3000"
 private const val TIMT_OUT = 60L
 private const val TAG = "wenshi"
 
@@ -42,3 +44,5 @@ val retrofit: Retrofit = Retrofit.Builder()
     .build()
 
 object UserService : UserApi by retrofit.create(UserApi::class.java)
+
+object MainService: MainApi by retrofit.create(MainApi::class.java)
