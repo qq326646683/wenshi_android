@@ -38,6 +38,7 @@ class MainActivity : BaseDataBindVMActivity<ActivityMainBinding>() {
             add(HomeFragment())
             add(HomeFragment())
             add(HomeFragment())
+            add(HomeFragment())
         }.also {
             mMainViewPager.adapter = MainFragmentAdapter(this, it)
         }
@@ -46,11 +47,13 @@ class MainActivity : BaseDataBindVMActivity<ActivityMainBinding>() {
         mMainBottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.action_home -> mMainViewPager.setCurrentItem(0, true)
-                R.id.action_discover -> mMainViewPager.setCurrentItem(1, true)
-                R.id.action_mine -> mMainViewPager.setCurrentItem(2, true)
+                R.id.action_message -> mMainViewPager.setCurrentItem(1, true)
+                R.id.action_discover -> mMainViewPager.setCurrentItem(2, true)
+                R.id.action_mine -> mMainViewPager.setCurrentItem(3, true)
             }
             true
         }
+        mMainBottomNavigation.itemIconTintList = null
 
     }
 
