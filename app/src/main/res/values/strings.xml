@@ -13,4 +13,9 @@
     <string name="home_bottom_mine">我的</string>
 
 
+    <string name="empty_data">Empty Data</string>
+    <string name="retry_load">retry load</string>
+
+
+
 </resources>
