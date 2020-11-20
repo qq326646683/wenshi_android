@@ -3,6 +3,7 @@ package com.jinxian.wenshi.base.fragment
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.Observer
 import com.jinxian.wenshi.R
+import com.jinxian.wenshi.constant.Constant
 import com.jinxian.wenshi.ext.otherwise
 import com.jinxian.wenshi.ext.yes
 import com.kennyc.view.MultiStateView
@@ -10,6 +11,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
+import kotlinx.android.synthetic.main.layout_refresh_retry.*
 
 abstract class BaseListVMFragment<M> : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
 
@@ -22,12 +24,21 @@ abstract class BaseListVMFragment<M> : BaseVMFragment(), OnRefreshListener, OnLo
     override fun initView() {
         initRefreshLayout()
         initRecyclerView()
+        initMultiStateView()
     }
 
     private fun initRefreshLayout() {
         mRefreshLayout.run {
             setOnRefreshListener(this@BaseListVMFragment)
             setOnLoadMoreListener(this@BaseListVMFragment)
+        }
+    }
+
+    private fun initMultiStateView() {
+        mMultiStateView.viewState = MultiStateView.ViewState.LOADING
+        mRetryLoad.setOnClickListener {
+            mPage = 1
+            initViewModelAction()
         }
     }
 
@@ -43,27 +54,48 @@ abstract class BaseListVMFragment<M> : BaseVMFragment(), OnRefreshListener, OnLo
     }
 
     protected fun initViewModelAction() {
-        (mPage == 1).yes {
-            mRefreshLayout.autoRefreshAnimationOnly()
-        }
         getListData()
     }
 
     protected val mListObserver = Observer<List<M>> {
+        (it != null && it.isEmpty()).yes {
+            mMultiStateView.viewState = MultiStateView.ViewState.EMPTY
+        }
+
         (it != null && it.isNotEmpty()).yes {
             mMultiStateView.viewState = MultiStateView.ViewState.CONTENT
         }
+
+
+
         (mPage == 1).yes {
             mListData.clear()
             mListData.addAll(it)
-            mRefreshLayout.finishRefresh()
+            (it.size < Constant.PAGE_SIZE).yes {
+                mRefreshLayout.finishRefreshWithNoMoreData()
+            }.otherwise {
+                mRefreshLayout.finishRefresh()
+            }
         }.otherwise {
             mListData.addAll(it)
-            mRefreshLayout.finishLoadMore()
+            (it.size < Constant.PAGE_SIZE).yes {
+                mRefreshLayout.finishLoadMoreWithNoMoreData()
+            }.otherwise {
+                mRefreshLayout.finishLoadMore()
+            }
         }
     }
 
-    override fun dismissLoading() {
+
+    override fun showSuccess() {
+        mRefreshLayout.run {
+            finishRefresh()
+            finishLoadMore()
+        }
+    }
+
+    override fun showError() {
+        mMultiStateView.viewState = MultiStateView.ViewState.ERROR
         mRefreshLayout.run {
             finishRefresh()
             finishLoadMore()

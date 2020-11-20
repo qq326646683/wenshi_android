@@ -13,8 +13,9 @@
     <string name="home_bottom_mine">我的</string>
 
 
-    <string name="empty_data">Empty Data</string>
-    <string name="retry_load">retry load</string>
+    <string name="empty_data">没有数据哦～</string>
+    <string name="retry_load">网络出问题,点击重试~</string>
+    <string name="loading">加载中...</string>
 
 
 

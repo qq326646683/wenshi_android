@@ -61,13 +61,13 @@ abstract class BaseVMFragment : Fragment() {
     }
 
     private fun initViewModelAction() {
-        getViewModel().let {baseViewModel ->
+        getViewModel().let { baseViewModel ->
             baseViewModel.mStateLiveData.observe(this, Observer {
                 when (it) {
                     LoadState -> showLoading()
-                    SuccessState -> dismissLoading()
+                    SuccessState -> showSuccess()
                     is ErrorState -> {
-                        dismissLoading()
+                        showError()
                         it.message?.apply {
                             errorToast(this)
                             handleError()
@@ -92,7 +92,11 @@ abstract class BaseVMFragment : Fragment() {
 
     }
 
-    open fun dismissLoading() {
+    open fun showSuccess() {
+
+    }
+
+    open fun showError() {
 
     }
 

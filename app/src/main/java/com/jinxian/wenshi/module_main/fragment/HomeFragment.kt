@@ -23,6 +23,7 @@ class HomeFragment : BaseListVMFragment<TalkModel>() {
     override fun getViewModel(): BaseViewModel = mViewModel
 
     override fun initRecyclerView() {
+
         val type = Type<LayoutHomeTabItemBinding>(R.layout.layout_home_tab_item)
             .onClick {
 
@@ -34,7 +35,11 @@ class HomeFragment : BaseListVMFragment<TalkModel>() {
                 layoutManager = LinearLayoutManager(mActivity)
             })
 
-        mRefreshLayout.autoRefresh()
+    }
+
+    override fun initData() {
+        getListData()
+
     }
 
     override fun getListData() {
