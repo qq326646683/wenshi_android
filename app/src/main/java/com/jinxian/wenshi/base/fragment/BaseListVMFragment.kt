@@ -11,7 +11,6 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
-import kotlinx.android.synthetic.main.layout_refresh_retry.*
 
 abstract class BaseListVMFragment<M> : BaseVMFragment(), OnRefreshListener, OnLoadMoreListener {
 
@@ -36,8 +35,10 @@ abstract class BaseListVMFragment<M> : BaseVMFragment(), OnRefreshListener, OnLo
 
     private fun initMultiStateView() {
         mMultiStateView.viewState = MultiStateView.ViewState.LOADING
-        mRetryLoad.setOnClickListener {
+
+        mMultiStateView.getView(MultiStateView.ViewState.ERROR)?.setOnClickListener {
             mPage = 1
+            mMultiStateView.viewState = MultiStateView.ViewState.LOADING
             initViewModelAction()
         }
     }
