@@ -15,7 +15,7 @@ interface MainApi {
     suspend fun getTalkList(
         @Query("limit") limit: Int,
         @Query("offset") offset: Int,
-        @Query("userId") userId: String,
+        @Query("userId") userId: String?,
         @Query("mediaType") mediaType: String
     ): ResponseModel<TalkModel>
 }

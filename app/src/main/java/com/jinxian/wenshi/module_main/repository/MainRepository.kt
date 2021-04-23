@@ -9,7 +9,7 @@ class MainRepository(private val mMainApi: MainApi) {
     suspend fun getTalkList(
         limit: Int,
         offset: Int,
-        userId: String,
+        userId: String?,
         mediaType: String
     ): ResponseModel<TalkModel> = mMainApi.getTalkList(limit, offset, userId, mediaType)
 

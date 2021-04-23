@@ -9,7 +9,7 @@ import com.jinxian.wenshi.module_main.repository.MainRepository
 class HomeViewModel(private val mMainRepository: MainRepository) : BaseViewModel() {
 
     fun getHomeData(page: Int): LiveData<List<TalkModel>> = emit {
-        mMainRepository.getTalkList(PAGE_SIZE, (page - 1) * PAGE_SIZE, "5911439", "video").objs
+        mMainRepository.getTalkList(PAGE_SIZE, (page - 1) * PAGE_SIZE, null, "video").objs
     }
 
 }

@@ -1,5 +1,6 @@
 package com.jinxian.wenshi.module_main.activity
 
+import android.util.Log
 import android.view.View.GONE
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -58,7 +59,9 @@ class MainActivity : BaseDataBindVMActivity<ActivityMainBinding>() {
     }
 
     override fun initData() {
+        Log.i("nell-mViewModel-main1", mViewModel.toString())
         UserInfoUI.mUserModel.observe(this, Observer {
+            Log.i("nell-mViewModel-main2", it.toString())
             mDataBind.mUserModel = it
             infoToast(it.toString())
             mBtnLogin.visibility = GONE;

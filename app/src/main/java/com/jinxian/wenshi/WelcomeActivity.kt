@@ -1,15 +1,20 @@
 package com.jinxian.wenshi
 
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
-import com.afollestad.assent.AssentResult
-import com.afollestad.assent.Callback
 import com.afollestad.assent.Permission
 import com.jinxian.wenshi.base.activity.BaseDataBindActivity
 import com.jinxian.wenshi.databinding.ActivityWelcomeBinding
 import com.jinxian.wenshi.ext.*
+import com.jinxian.wenshi.media.FFMediaPlayer
 import com.jinxian.wenshi.module_main.activity.MainActivity
 import com.jinxian.wenshi.module_user.viewmodel.UserViewModel
-import kotlinx.coroutines.*
+import com.jinxian.wenshi.util.CommonUtils
+import kotlinx.android.synthetic.main.activity_welcome.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
@@ -23,10 +28,12 @@ class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
             delay(2000L)
             askForPermission()
         }
+
     }
 
     override fun initData() {
         mDataBind.versionName = getVersionName()
+        ffmpeg.text = FFMediaPlayer.native_GetFFmpegVersion()
     }
 
     private fun askForPermission() {
@@ -36,6 +43,7 @@ class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
                 Permission.WRITE_EXTERNAL_STORAGE
             ).yes {
                 getUserInfo()
+                CommonUtils.copyAssetsDirToSDCard(this@WelcomeActivity, "byteflow", "/sdcard")
                 startActivity<MainActivity>()
             }.otherwise {
                 finish()

@@ -1,4 +1,7 @@
 package com.jinxian.wenshi.module_user.viewmodel
+
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -44,4 +47,6 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
         }
     }
 
+
 }
+
