@@ -4,6 +4,8 @@ import android.opengl.GLSurfaceView
 import android.os.Build
 import android.os.Environment
 import android.util.Log
+import android.view.WindowManager
+import android.widget.SeekBar
 import androidx.lifecycle.Observer
 import com.jinxian.wenshi.R
 import com.jinxian.wenshi.base.activity.BaseDataBindVMActivity
@@ -36,7 +38,7 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>(), GLSurfaceV
     private val TAG = "LoginActivity"
 
     private val mVideoPath =
-        Environment.getExternalStorageDirectory().absolutePath + "/byteflow/one_piece.mp4"
+        Environment.getExternalStorageDirectory().absolutePath + "/byteflow/login_bg.mp4"
 
 
     private val mViewModel: UserViewModel by viewModel()
@@ -45,12 +47,15 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>(), GLSurfaceV
 
     private var mMediaPlayer: FFMediaPlayer? = null
 
+    private var mIsTouch = false
+
 
     override fun getLayoutId(): Int = R.layout.activity_login
 
     override fun getViewModel(): BaseViewModel = mViewModel
 
     override fun initView() {
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mLogin.setOnClickListener {
             clickLogin()
         }
@@ -58,6 +63,24 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>(), GLSurfaceV
         surfaceView.setEGLContextClientVersion(3)
         surfaceView.setRenderer(this)
         surfaceView.renderMode = GLSurfaceView.RENDERMODE_WHEN_DIRTY
+
+
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(s: SeekBar, i: Int, b: Boolean) {
+            }
+
+            override fun onStartTrackingTouch(s: SeekBar) {
+                mIsTouch = true
+            }
+
+            override fun onStopTrackingTouch(s: SeekBar) {
+                mMediaPlayer?.let {
+                    it.seekToPosition(seekBar.progress.toFloat())
+                    mIsTouch = false
+                }
+            }
+
+        })
 
         mMediaPlayer = FFMediaPlayer()
         mMediaPlayer?.addEventCallback(this)
@@ -139,10 +162,13 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>(), GLSurfaceV
                 }
                 MSG_DECODER_READY -> onDecoderReady()
                 MSG_DECODER_DONE -> {
+
                 }
                 MSG_REQUEST_RENDER -> surfaceView.requestRender()
                 MSG_DECODING_TIME -> {
-
+                    if (!mIsTouch) {
+                        seekBar.progress = msgValue.toInt()
+                    }
                 }
                 else -> {
                 }
@@ -156,6 +182,11 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>(), GLSurfaceV
         if (videoHeight * videoWidth != 0) surfaceView.setAspectRatio(videoWidth, videoHeight)
         Log.i("nell-videoWidth", "$videoWidth, videoHeight:$videoHeight")
         val duration = mMediaPlayer!!.getMediaParams(MEDIA_PARAM_VIDEO_DURATION).toInt()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            seekBar.min = 0
+        }
+        seekBar.max = duration
     }
 
 

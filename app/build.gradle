@@ -109,6 +109,7 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
     implementation 'com.lxj:xpopup:1.8.10-x'
+    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
 
     //bugly异常捕捉
     implementation 'com.tencent.bugly:crashreport:3.2.33'
