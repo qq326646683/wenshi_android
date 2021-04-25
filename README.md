@@ -4,7 +4,8 @@
 问世是一款仿抖音的开源项目，目的是熟悉Android MVVM、Kotlin、Jetpack、音视频、即时通讯以及混合Flutter
 
 ## Todo List
-- [ ] 登录、游客模式
+- [x] 登录、游客模式
+- [x] 登陆页ffmpeg视频播放器
 - [ ] 抖音首页
 - [ ] 视频处理
     - [ ] 滤镜
