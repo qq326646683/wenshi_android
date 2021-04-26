@@ -1,5 +1,6 @@
 package com.jinxian.wenshi.base.fragment
 
+import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.Observer
 import com.jinxian.wenshi.R
@@ -59,6 +60,8 @@ abstract class BaseListVMFragment<M> : BaseVMFragment(), OnRefreshListener, OnLo
     }
 
     protected val mListObserver = Observer<List<M>> {
+        Log.i("nell-mListObserver", "--${it}")
+
         (it != null && it.isEmpty()).yes {
             mMultiStateView.viewState = MultiStateView.ViewState.EMPTY
         }

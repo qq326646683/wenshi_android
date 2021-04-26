@@ -30,9 +30,12 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
                     userLoginModel.password.get()!!
                 )
             )
+            Log.i("nell-response", "--:$response")
 
             (response.status == "success").yes {
-                UserInfoUI.mUserModel.value = response.obj
+                val obj = response.obj
+                Log.i("nell-obj1", "--:$obj")
+                UserInfoUI.mUserModel.value = obj
             }.otherwise {
                 infoToast(response.message)
             }
@@ -43,7 +46,9 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
 
     fun getUserInfo() {
         launch {
-            UserInfoUI.mUserModel.value = mUserRepository.getUserInfo().obj
+            val obj = mUserRepository.getUserInfo().obj
+            Log.i("nell-obj2", "--:$obj")
+            UserInfoUI.mUserModel.value = obj
         }
     }
 

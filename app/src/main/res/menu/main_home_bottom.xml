@@ -7,7 +7,7 @@
     <item
         android:id="@+id/action_message"
         android:icon="@drawable/selector_navibtn_message"
-        android:title="@string/home_bottom_mine" />
+        android:title="@string/home_bottom_message" />
     <item
         android:id="@+id/action_discover"
         android:icon="@drawable/selector_navibtn_discover"

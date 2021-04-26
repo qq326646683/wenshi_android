@@ -3,29 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="mUserModel"
-            type="com.jinxian.wenshi.module_user.model.UserModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/mBtnLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="登录"
-            tools:ignore="MissingConstraints" />
-
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/mMainViewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/mMainBottomNavigation"
             />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -40,27 +28,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mMainViewPager"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white">
-
-            <Button
-                android:id="@+id/mBtnLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="登录"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{mUserModel.toString()}" />
-        </LinearLayout>
-    -->
 
 </layout>

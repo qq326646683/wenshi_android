@@ -8,7 +8,7 @@ data class TalkModel(
     val describe: String,
     val mediaUrl: String,
     val subUrl: String,
-    val likeCount: Int,
+    var likeCount: Int,
     val status: Int,
     val user: UserModel
 ): Serializable

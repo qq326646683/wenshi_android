@@ -1,20 +1,19 @@
 package com.jinxian.wenshi.module_main.fragment
 
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.nitrico.lastadapter.LastAdapter
-import com.github.nitrico.lastadapter.Type
-import com.jinxian.wenshi.R
-import com.jinxian.wenshi.BR
-import com.jinxian.wenshi.base.fragment.BaseDataBindVMFragment
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
 import com.jinxian.wenshi.base.fragment.BaseListVMFragment
 import com.jinxian.wenshi.base.viewmodel.BaseViewModel
-import com.jinxian.wenshi.databinding.FragmentHomeBinding
 import com.jinxian.wenshi.databinding.LayoutHomeTabItemBinding
+import com.jinxian.wenshi.module_main.adapter.HomeTabListAdapter
 import com.jinxian.wenshi.module_main.model.TalkModel
 import com.jinxian.wenshi.module_main.viewmodel.HomeViewModel
-import com.jinxian.wenshi.module_user.viewmodel.UserViewModel
+import com.shuyu.gsyvideoplayer.GSYVideoManager
 import kotlinx.android.synthetic.main.common_refresh_recyclerview.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class HomeFragment : BaseListVMFragment<TalkModel>() {
 
@@ -24,27 +23,65 @@ class HomeFragment : BaseListVMFragment<TalkModel>() {
 
     override fun initRecyclerView() {
 
-        val type = Type<LayoutHomeTabItemBinding>(R.layout.layout_home_tab_item)
-            .onClick {
-
+        val snapHelper: PagerSnapHelper = object : PagerSnapHelper() {
+            override fun findTargetSnapPosition(
+                layoutManager: RecyclerView.LayoutManager?,
+                velocityX: Int,
+                velocityY: Int
+            ): Int {
+                val position = super.findTargetSnapPosition(layoutManager, velocityX, velocityY)
+                if (position >= 0) {
+                    GSYVideoManager.releaseAllVideos()
+                    playPosition(position)
+                }
+                return position
             }
+        }
 
-        LastAdapter(mListData, BR.homeTabItem)
-            .map<TalkModel>(type)
-            .into(mRecyclerView.apply {
-                layoutManager = LinearLayoutManager(mActivity)
-            })
+        mRecyclerView.let {
+            it.adapter = HomeTabListAdapter(mViewModel).apply {
+                setNewInstance(mListData)
+            }
+            it.layoutManager = LinearLayoutManager(mActivity)
+            it.onFlingListener = null
+            snapHelper.attachToRecyclerView(it)
+        }
 
+        mRecyclerView.postDelayed(Runnable {
+            if (mListData.size > 0) {
+                playPosition(0)
+            }
+        }, 100)
+
+    }
+
+    fun playPosition(position: Int) {
+        mRecyclerView?.findViewHolderForAdapterPosition(position)?.let {
+            (it as BaseDataBindingHolder<LayoutHomeTabItemBinding>).dataBinding?.gsyVideoPlayer?.startPlayLogic()
+        }
     }
 
     override fun initData() {
         getListData()
-
     }
 
     override fun getListData() {
         mViewModel.getHomeData(mPage).observe(this, mListObserver)
     }
 
+    override fun onResume() {
+        super.onResume()
+        GSYVideoManager.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        GSYVideoManager.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        GSYVideoManager.releaseAllVideos()
+    }
 
 }
