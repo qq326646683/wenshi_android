@@ -51,6 +51,12 @@
                 android:textColor="@android:color/white" />
         </LinearLayout>
 
+        <com.tencent.qgame.animplayer.AnimView
+            android:id="@+id/videoAnimView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

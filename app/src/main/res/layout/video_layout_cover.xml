@@ -38,10 +38,10 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:background="#99000000"
+        android:background="#00000000"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="invisible">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/current"
@@ -104,12 +104,13 @@
         android:layout_marginTop="6dp"
         android:visibility="gone" />
 
+    <!--        android:background="@drawable/video_title_bg"-->
     <LinearLayout
         android:id="@+id/layout_top"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/video_title_bg"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/back"
