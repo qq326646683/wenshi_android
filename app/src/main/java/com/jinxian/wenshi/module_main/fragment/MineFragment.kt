@@ -30,7 +30,7 @@ class MineFragment : BaseDataBindVMFragment<FragmentMineBinding>() {
 
     override fun initData() {
         UserInfoUI.mUserModel.observe(this, Observer {
-            Log.i("nell-mViewModel-main2", "--:$it")
+            Log.i("nell-mViewModel-minefra", "-----")
             mDataBind.mUserModel = it
             mBtnLogin.visibility = if (it == null) View.VISIBLE else View.GONE;
         })

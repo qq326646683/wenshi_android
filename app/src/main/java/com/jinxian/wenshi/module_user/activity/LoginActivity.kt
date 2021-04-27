@@ -114,6 +114,7 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>(), GLSurfaceV
         Log.i("nell-mViewModel-login1", mViewModel.toString())
         mViewModel.login(mUserLoginModel)
         UserInfoUI.mUserModel.observe(this, Observer {
+            if (it == null) return@Observer
             Log.i("nell-mViewModel-login2", it.toString())
             Settings.Account.token = it.token
             finish()

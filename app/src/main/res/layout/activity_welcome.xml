@@ -8,21 +8,31 @@
             type="java.lang.String" />
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:background="@mipmap/welcome_bg">
         <TextView
             android:id="@+id/mVersionTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text='@{"v" + versionName}'
+            android:textSize="@dimen/dp_25"
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             />
         <TextView
             android:id="@+id/ffmpeg"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/mVersionTv"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
