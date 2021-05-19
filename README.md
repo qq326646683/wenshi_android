@@ -24,3 +24,18 @@
     - [ ] 发布动态
     - [ ] 朋友圈展示
 - [ ] 还没想好(混合Flutter)
+
+## Setup
+
+1. 后端地址: https://github.com/qq326646683/wenshi_api
+2. 修改app请求api url
+```
+Retrofit.kt
+
+private const val BASE_URL = "http://192.168.11.36:3000"
+```
+
+
+
+
+

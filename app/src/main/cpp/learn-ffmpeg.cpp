@@ -53,9 +53,10 @@ Java_com_jinxian_wenshi_media_FFMediaPlayer_00024Companion_native_1GetFFmpegVers
 
 
 extern "C" JNIEXPORT jlong JNICALL
-Java_com_jinxian_wenshi_media_FFMediaPlayer_native_1Init(JNIEnv *env, jobject obj, jstring jurl, jint renderType,
+Java_com_jinxian_wenshi_media_FFMediaPlayer_native_1Init(JNIEnv *env, jobject obj, jstring jurl,
+                                                         jint renderType,
                                                          jobject surface) {
-    const char* url = env->GetStringUTFChars(jurl, nullptr);
+    const char *url = env->GetStringUTFChars(jurl, nullptr);
     FFMediaPlayer *player = new FFMediaPlayer();
     player->Init(env, obj, const_cast<char *>(url), renderType, surface);
     env->ReleaseStringUTFChars(jurl, url);
@@ -120,13 +121,12 @@ Java_com_jinxian_wenshi_media_FFMediaPlayer_native_1GetMediaParams(JNIEnv *env, 
         value = ffMediaPlayer->GetMediaParams(param_type);
     }
     return value;
-}extern "C"
-JNIEXPORT void JNICALL
+}
+extern "C" JNIEXPORT void JNICALL
 Java_com_jinxian_wenshi_media_FFMediaPlayer_00024Companion_native_1OnSurfaceCreated(JNIEnv *env,
                                                                                     jobject thiz,
                                                                                     jint render_type) {
-    switch (render_type)
-    {
+    switch (render_type) {
         case VIDEO_GL_RENDER:
             VideoGLRender::GetInstance()->OnSurfaceCreated();
             break;
@@ -136,15 +136,15 @@ Java_com_jinxian_wenshi_media_FFMediaPlayer_00024Companion_native_1OnSurfaceCrea
         default:
             break;
     }
-}extern "C"
-JNIEXPORT void JNICALL
+}
+
+extern "C" JNIEXPORT void JNICALL
 Java_com_jinxian_wenshi_media_FFMediaPlayer_00024Companion_native_1OnSurfaceChanged(JNIEnv *env,
                                                                                     jobject thiz,
                                                                                     jint render_type,
                                                                                     jint width,
                                                                                     jint height) {
-    switch (render_type)
-    {
+    switch (render_type) {
         case VIDEO_GL_RENDER:
             VideoGLRender::GetInstance()->OnSurfaceChanged(width, height);
             break;
@@ -153,13 +153,13 @@ Java_com_jinxian_wenshi_media_FFMediaPlayer_00024Companion_native_1OnSurfaceChan
             break;
         default:
             break;
-    }}extern "C"
-JNIEXPORT void JNICALL
+    }
+}
+extern "C" JNIEXPORT void JNICALL
 Java_com_jinxian_wenshi_media_FFMediaPlayer_00024Companion_native_1OnDrawFrame(JNIEnv *env,
                                                                                jobject thiz,
                                                                                jint render_type) {
-    switch (render_type)
-    {
+    switch (render_type) {
         case VIDEO_GL_RENDER:
             VideoGLRender::GetInstance()->OnDrawFrame();
             break;
@@ -168,4 +168,5 @@ Java_com_jinxian_wenshi_media_FFMediaPlayer_00024Companion_native_1OnDrawFrame(J
             break;
         default:
             break;
-    }}
+    }
+}
