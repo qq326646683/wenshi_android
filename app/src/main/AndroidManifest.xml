@@ -34,8 +34,9 @@
 
         <activity android:name=".module_main.activity.MainActivity" />
         <activity android:name=".module_user.activity.LoginActivity" />
-        <activity android:name="com.jinxian.wenshi.module_discover.opengl.activity.OpenGLHomeActivity" />
-        <activity android:name="com.jinxian.wenshi.module_discover.opengl.activity.OpenGLSampleActivity" />
+        <activity android:name=".module_discover.opengl.activity.OpenGLHomeActivity" />
+        <activity android:name=".module_discover.opengl.activity.OpenGLSampleActivity" />
+        <activity android:name=".module_discover.opengl.activity.OpenGLDotLineTriangleActivity"/>
     </application>
 
 </manifest>

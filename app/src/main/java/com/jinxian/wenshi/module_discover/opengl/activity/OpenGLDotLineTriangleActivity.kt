@@ -2,6 +2,7 @@ package com.jinxian.wenshi.module_discover.opengl.activity
 
 import com.jinxian.wenshi.R
 import com.jinxian.wenshi.base.activity.BaseActivity
+import com.jinxian.wenshi.module_discover.opengl.custom_shader.DotLineShapeRender
 import kotlinx.android.synthetic.main.activity_opengl_dotlinetriangle.*
 
 class OpenGLDotLineTriangleActivity: BaseActivity() {
@@ -9,6 +10,6 @@ class OpenGLDotLineTriangleActivity: BaseActivity() {
 
     override fun initView() {
         glDotLineView.setEGLContextClientVersion(3)
-//        glDotLineView.setRenderer(null)
+        glDotLineView.setRenderer(DotLineShapeRender())
     }
 }

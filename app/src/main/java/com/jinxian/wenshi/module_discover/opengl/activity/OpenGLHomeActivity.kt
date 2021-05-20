@@ -15,5 +15,9 @@ class OpenGLHomeActivity : BaseActivity() {
         icBack.setOnClickListener {
             finish()
         }
+
+        llOpenGLDotLine.setOnClickListener {
+            startActivity<OpenGLDotLineTriangleActivity>(false)
+        }
     }
 }
