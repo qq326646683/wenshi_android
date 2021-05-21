@@ -1,9 +1,7 @@
 package com.jinxian.wenshi.module_discover.opengl.custom_shader
 
-import android.graphics.Shader
 import android.opengl.GLES30
 import android.opengl.GLSurfaceView
-import android.util.Log
 import com.jinxian.wenshi.R
 import com.jinxian.wenshi.util.ResReadUtil
 import com.jinxian.wenshi.util.ShaderUtil
@@ -89,6 +87,15 @@ class DotLineShapeRender : GLSurfaceView.Renderer {
         GLES30.glClear(GLES30.GL_COLOR_BUFFER_BIT)
 
         // 准备坐标数据
+        /*
+        index：顶点属性的索引.（这里我们的顶点位置和颜色向量在着色器中分别为0和1）layout (location = 0) in vec4 vPosition; layout (location = 1) in vec4 aColor;
+        size: 指定每个通用顶点属性的元素个数。必须是1、2、3、4。此外，glvertexattribpointer接受符号常量gl_bgra。初始值为4（也就是涉及颜色的时候必为4）。
+        type：属性的元素类型。（上面都是Float所以使用GLES30.GL_FLOAT）；
+        normalized：转换的时候是否要经过规范化，true：是；false：直接转化；
+        stride：跨距，默认是0。（由于我们将顶点位置和颜色数据分别存放没写在一个数组中，所以使用默认值0）
+        ptr： 本地数据缓存（这里我们的是顶点的位置和颜色数据）。
+        一层层的去查看我们发现最终实现都是c方法，这也和我们第一篇中说的OpenGL的核心代码都是写的。
+         */
         GLES30.glVertexAttribPointer(0, 3, GLES30.GL_FLOAT, false, 0, vertexBuffer)
         // 启用顶点位置句柄
         GLES30.glEnableVertexAttribArray(0)

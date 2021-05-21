@@ -37,6 +37,7 @@
         <activity android:name=".module_discover.opengl.activity.OpenGLHomeActivity" />
         <activity android:name=".module_discover.opengl.activity.OpenGLSampleActivity" />
         <activity android:name=".module_discover.opengl.activity.OpenGLDotLineTriangleActivity"/>
+        <activity android:name=".module_discover.opengl.activity.OpenGLRectCircleActivity"/>
     </application>
 
 </manifest>
