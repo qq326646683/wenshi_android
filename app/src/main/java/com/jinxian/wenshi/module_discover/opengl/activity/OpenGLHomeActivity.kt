@@ -23,5 +23,10 @@ class OpenGLHomeActivity : BaseActivity() {
         llOpenRect.setOnClickListener {
             startActivity<OpenGLRectCircleActivity>(false)
         }
+
+        llOpenTexture.setOnClickListener {
+            startActivity<OpenGLTextureActivity>(false)
+
+        }
     }
 }
