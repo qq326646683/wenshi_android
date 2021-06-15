@@ -11,7 +11,9 @@
 
 
     <!--opengl es环境设置-->
-    <uses-feature android:glEsVersion="0x00030000" android:required="true" />
+    <uses-feature
+        android:glEsVersion="0x00030000"
+        android:required="true" />
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -21,6 +23,10 @@
         android:roundIcon="@mipmap/ic_favicon"
         android:supportsRtl="true"
         android:theme="@style/ToolBarTheme">
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="cocos" />
+
         <activity
             android:name=".WelcomeActivity"
             android:screenOrientation="portrait"
@@ -36,9 +42,11 @@
         <activity android:name=".module_user.activity.LoginActivity" />
         <activity android:name=".module_discover.opengl.activity.OpenGLHomeActivity" />
         <activity android:name=".module_discover.opengl.activity.OpenGLSampleActivity" />
-        <activity android:name=".module_discover.opengl.activity.OpenGLDotLineTriangleActivity"/>
-        <activity android:name=".module_discover.opengl.activity.OpenGLRectCircleActivity"/>
-        <activity android:name=".module_discover.opengl.activity.OpenGLTextureActivity"/>
+        <activity android:name=".module_discover.opengl.activity.OpenGLDotLineTriangleActivity" />
+        <activity android:name=".module_discover.opengl.activity.OpenGLRectCircleActivity" />
+        <activity android:name=".module_discover.opengl.activity.OpenGLTextureActivity" />
+
+        <activity android:name=".module_discover.cocos.activity.CocosGameActivity" android:process=":cocos"/>
     </application>
 
 </manifest>

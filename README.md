@@ -5,9 +5,9 @@
 
 ## Todo List
 - [x] 登录、游客模式
-- [x] 登陆页ffmpeg视频播放器
+- [x] 登陆页ffmpeg视频播放器 附[源码分析](https://github.com/qq326646683/tech-article/blob/master/android/AndroidJNI实战——记录实现视频播放器.md)
 - [x] 抖音首页
-- [x] 点赞动画(vap)
+- [x] 点赞动画(vap) 附[源码分析](https://github.com/qq326646683/tech-article/blob/master/android/Android学习——VAP源码.md)
 - [ ] 视频处理
     - [ ] 滤镜
     - [ ] 美颜

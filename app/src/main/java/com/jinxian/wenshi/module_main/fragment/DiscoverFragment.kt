@@ -9,6 +9,7 @@ import com.jinxian.wenshi.module_user.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_discover.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.jinxian.wenshi.ext.startActivity
+import com.jinxian.wenshi.module_discover.cocos.activity.CocosGameActivity
 
 
 class DiscoverFragment : BaseDataBindVMFragment<FragmentDiscoverBinding>() {
@@ -21,6 +22,9 @@ class DiscoverFragment : BaseDataBindVMFragment<FragmentDiscoverBinding>() {
     override fun initView() {
         llOpenGL.setOnClickListener {
             activity?.startActivity<OpenGLHomeActivity>(false)
+        }
+        llCocos.setOnClickListener {
+            activity?.startActivity<CocosGameActivity>(false)
         }
     }
 }

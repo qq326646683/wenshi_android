@@ -34,6 +34,9 @@ android {
             }
         }
     }
+    sourceSets.main {
+        jniLibs.srcDirs = ['src/main/jniLibs']
+    }
 
     buildTypes {
         release {
@@ -117,4 +120,7 @@ dependencies {
     implementation 'com.tencent.bugly:crashreport:3.2.33'
     //启动优化
     implementation project(path: ':LaunchStarter')
+    //cocos
+    implementation project(path: ':libcocos2dx')
+
 }

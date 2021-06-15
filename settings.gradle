@@ -1,2 +1,3 @@
 include ':app', ':LaunchStarter'
 rootProject.name = "wenshi_android"
+include ':libcocos2dx'
