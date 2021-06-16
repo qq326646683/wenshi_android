@@ -2,7 +2,6 @@ package com.jinxian.wenshi.module_user.activity
 
 import android.opengl.GLSurfaceView
 import android.os.Build
-import android.os.Environment
 import android.util.Log
 import android.view.WindowManager
 import android.widget.SeekBar
@@ -37,10 +36,6 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>(), GLSurfaceV
     FFMediaPlayer.EventCallback {
     private val TAG = "LoginActivity"
 
-    private val mVideoPath =
-        Environment.getExternalStorageDirectory().absolutePath + "/byteflow/login_bg.mp4"
-
-
     private val mViewModel: UserViewModel by viewModel()
 
     private val mUserLoginModel: UserLoginModel by lazy { UserLoginModel() }
@@ -55,6 +50,7 @@ class LoginActivity : BaseDataBindVMActivity<ActivityLoginBinding>(), GLSurfaceV
     override fun getViewModel(): BaseViewModel = mViewModel
 
     override fun initView() {
+        val mVideoPath = "${filesDir.absolutePath}/byteflow/login_bg.mp4"
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mLogin.setOnClickListener {
             clickLogin()
