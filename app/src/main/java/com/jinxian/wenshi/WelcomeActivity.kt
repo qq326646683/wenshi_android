@@ -43,7 +43,7 @@ class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
                 Permission.WRITE_EXTERNAL_STORAGE
             ).yes {
                 getUserInfo()
-                CommonUtils.copyAssetsDirToSDCard(this@WelcomeActivity, "byteflow", "/sdcard")
+                CommonUtils.copyAssetsDirToSDCard(this@WelcomeActivity, "byteflow", filesDir.absolutePath)
                 startActivity<MainActivity>()
             }.otherwise {
                 finish()
