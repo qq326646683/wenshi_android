@@ -57,7 +57,7 @@ public class CocosActivity extends Activity implements SurfaceHolder.Callback {
     private CocosSensorHandler mSensorHandler;
 
 
-    private native void onCreateNative(Activity activity, AssetManager assetManager, String obbPath, int sdkVersion);
+    private native void onCreateNative(Activity activity, AssetManager assetManager, String obbPath, int sdkVersion, String filePath);
 
     private native void onSurfaceCreatedNative(Surface surface);
 
@@ -88,7 +88,7 @@ public class CocosActivity extends Activity implements SurfaceHolder.Callback {
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         initView();
-        onCreateNative(this, getAssets(), getAbsolutePath(getObbDir()), Build.VERSION.SDK_INT);
+        onCreateNative(this, getAssets(), getAbsolutePath(getObbDir()), Build.VERSION.SDK_INT, filePath());
 
         mKeyCodeHandler = new CocosKeyCodeHandler(this);
         mSensorHandler = new CocosSensorHandler(this);
@@ -98,6 +98,10 @@ public class CocosActivity extends Activity implements SurfaceHolder.Callback {
         Utils.hideVirtualButton();
 
         mOrientationHelper = new CocosOrientationHelper(this);
+    }
+
+    protected String filePath() {
+        return "";
     }
 
     private void setImmersiveMode() {
