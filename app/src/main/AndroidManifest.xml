@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
 
     <!--opengl es环境设置-->
@@ -21,6 +22,10 @@
         android:roundIcon="@mipmap/ic_favicon"
         android:supportsRtl="true"
         android:theme="@style/ToolBarTheme">
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="cocos" />
+
         <activity
             android:name=".WelcomeActivity"
             android:screenOrientation="portrait"
@@ -39,6 +44,8 @@
         <activity android:name=".module_discover.opengl.activity.OpenGLDotLineTriangleActivity"/>
         <activity android:name=".module_discover.opengl.activity.OpenGLRectCircleActivity"/>
         <activity android:name=".module_discover.opengl.activity.OpenGLTextureActivity"/>
+        <activity android:name=".module_discover.cocos.CocosHomeActivity"/>
+        <activity android:name=".module_discover.cocos.CocosGameActivity" android:process=":cocos"/>
     </application>
 
 </manifest>
