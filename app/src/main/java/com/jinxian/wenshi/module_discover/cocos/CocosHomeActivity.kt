@@ -1,12 +1,10 @@
 package com.jinxian.wenshi.module_discover.cocos
 
-import android.Manifest
 import android.app.DownloadManager
 import android.content.Intent
 import android.os.Environment
 import android.util.Log
 import androidx.appcompat.widget.AppCompatButton
-import com.cocos.lib.GlobalObject
 import com.jinxian.wenshi.R
 import com.jinxian.wenshi.base.activity.BaseActivity
 import com.jinxian.wenshi.util.DownloadListener
@@ -90,5 +88,10 @@ class CocosHomeActivity : BaseActivity() {
             }
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        DownloadUtil.instance.removeListener(listener)
     }
 }

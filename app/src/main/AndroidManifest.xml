@@ -46,6 +46,7 @@
         <activity android:name=".module_discover.opengl.activity.OpenGLTextureActivity"/>
         <activity android:name=".module_discover.cocos.CocosHomeActivity"/>
         <activity android:name=".module_discover.cocos.CocosGameActivity" android:process=":cocos"/>
+        <activity android:name=".module_discover.widgets.WidgetsHomeActivity"/>
     </application>
 
 </manifest>

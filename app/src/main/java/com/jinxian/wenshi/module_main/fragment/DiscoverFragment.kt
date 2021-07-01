@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.fragment_discover.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.jinxian.wenshi.ext.startActivity
 import com.jinxian.wenshi.module_discover.cocos.CocosHomeActivity
+import com.jinxian.wenshi.module_discover.widgets.WidgetsHomeActivity
 
 
 class DiscoverFragment : BaseDataBindVMFragment<FragmentDiscoverBinding>() {
@@ -25,6 +26,9 @@ class DiscoverFragment : BaseDataBindVMFragment<FragmentDiscoverBinding>() {
         }
         llCocos.setOnClickListener {
             activity?.startActivity<CocosHomeActivity>(false)
+        }
+        llWidgets.setOnClickListener {
+            activity?.startActivity<WidgetsHomeActivity>(false)
         }
     }
 }
