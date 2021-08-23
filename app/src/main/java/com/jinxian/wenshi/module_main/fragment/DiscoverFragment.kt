@@ -22,13 +22,13 @@ class DiscoverFragment : BaseDataBindVMFragment<FragmentDiscoverBinding>() {
 
     override fun initView() {
         llOpenGL.setOnClickListener {
-            activity?.startActivity<OpenGLHomeActivity>(false)
+            activity?.startActivity<OpenGLHomeActivity>()
         }
         llCocos.setOnClickListener {
-            activity?.startActivity<CocosHomeActivity>(false)
+            activity?.startActivity<CocosHomeActivity>()
         }
         llWidgets.setOnClickListener {
-            activity?.startActivity<WidgetsHomeActivity>(false)
+            activity?.startActivity<WidgetsHomeActivity>()
         }
     }
 }

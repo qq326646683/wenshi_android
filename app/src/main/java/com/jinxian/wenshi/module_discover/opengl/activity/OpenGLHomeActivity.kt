@@ -10,22 +10,22 @@ class OpenGLHomeActivity : BaseActivity() {
 
     override fun initView() {
         llOpenGLSample.setOnClickListener {
-            startActivity<OpenGLSampleActivity>(false)
+            startActivity<OpenGLSampleActivity>()
         }
         icBack.setOnClickListener {
             finish()
         }
 
         llOpenGLDotLine.setOnClickListener {
-            startActivity<OpenGLDotLineTriangleActivity>(false)
+            startActivity<OpenGLDotLineTriangleActivity>()
         }
 
         llOpenRect.setOnClickListener {
-            startActivity<OpenGLRectCircleActivity>(false)
+            startActivity<OpenGLRectCircleActivity>()
         }
 
         llOpenTexture.setOnClickListener {
-            startActivity<OpenGLTextureActivity>(false)
+            startActivity<OpenGLTextureActivity>()
 
         }
     }

@@ -11,9 +11,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
             android:background="@color/colorPrimary"
-            >
+            app:layout_constraintTop_toTopOf="parent">
+
             <ImageView
                 android:id="@+id/icBack"
                 android:layout_width="45dp"
@@ -21,6 +21,7 @@
                 android:padding="10dp"
                 android:src="@mipmap/ic_arrow_left_bold"
                 app:tint="@android:color/white" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,44 +29,78 @@
                 android:gravity="center"
                 android:text="Widgets"
                 android:textColor="@android:color/white"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/llBottonSheet"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
             android:background="@android:color/white"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:paddingHorizontal="15dp"
-            >
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@mipmap/discover_active"/>
+                android:src="@mipmap/discover_active" />
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="BottomSheet"
                 android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="BottomSheet"
                 android:textColor="@android:color/black"
-                android:textSize="16dp"/>
+                android:textSize="16dp" />
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/ic_arrow_right"/>
+                android:src="@mipmap/ic_arrow_right" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llAite"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="15dp"
+            app:layout_constraintTop_toBottomOf="@id/llBottonSheet">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/discover_active" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="艾特"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/ic_arrow_right" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
         <fragment
             android:id="@+id/bottomSheetFragment"
+            android:name="com.jinxian.wenshi.module_discover.widgets.bottomsheet.BottomSheetFragment"
             android:layout_width="match_parent"
             android:layout_height="600dp"
-            android:name="com.jinxian.wenshi.module_discover.widgets.bottomsheet.BottomSheetFragment"
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

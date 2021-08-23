@@ -47,6 +47,7 @@
         <activity android:name=".module_discover.cocos.CocosHomeActivity"/>
         <activity android:name=".module_discover.cocos.CocosGameActivity" android:process=":cocos"/>
         <activity android:name=".module_discover.widgets.WidgetsHomeActivity"/>
+        <activity android:name=".module_discover.widgets.aite.AiteWidgetActivity"/>
     </application>
 
 </manifest>

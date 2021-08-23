@@ -44,7 +44,7 @@ class WelcomeActivity : BaseDataBindActivity<ActivityWelcomeBinding>() {
             ).yes {
                 getUserInfo()
                 CommonUtils.copyAssetsDirToSDCard(this@WelcomeActivity, "byteflow", filesDir.absolutePath)
-                startActivity<MainActivity>()
+                startActivity<MainActivity>(true)
             }.otherwise {
                 finish()
             }

@@ -24,7 +24,7 @@ class MineFragment : BaseDataBindVMFragment<FragmentMineBinding>() {
 
     override fun initView() {
         mBtnLogin.setOnClickListener {
-            activity?.startActivity<LoginActivity>(false)
+            activity?.startActivity<LoginActivity>()
         }
     }
 
