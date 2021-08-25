@@ -22,9 +22,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="获取艾特列表"
-        app:layout_constraintTop_toBottomOf="@id/etInput"
         app:layout_constraintLeft_toLeftOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/etInput" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorLink="@drawable/aite_tv_selector"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnGetAite" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

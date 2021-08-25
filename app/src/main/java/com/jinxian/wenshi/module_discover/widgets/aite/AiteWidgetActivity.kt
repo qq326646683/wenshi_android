@@ -1,7 +1,10 @@
 package com.jinxian.wenshi.module_discover.widgets.aite
 
-import android.text.Editable
-import android.text.TextWatcher
+import android.graphics.Color
+import android.text.*
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.view.View
 import com.jinxian.wenshi.R
 import com.jinxian.wenshi.base.activity.BaseActivity
 import com.jinxian.wenshi.ext.errorToast
@@ -10,6 +13,7 @@ import com.jinxian.wenshi.module_discover.widgets.aite.widget.MentionSpanFactory
 import com.jinxian.wenshi.module_discover.widgets.aite.widget.MentionUserEntity
 import com.lxj.xpopup.XPopup
 import kotlinx.android.synthetic.main.activity_widget_aite.*
+import java.io.Serializable
 
 class AiteWidgetActivity : BaseActivity() {
     override fun getLayoutId() = R.layout.activity_widget_aite
@@ -59,10 +63,50 @@ class AiteWidgetActivity : BaseActivity() {
             val editable = etInput.text
             val spans: Array<out MentionUserEntity>? =
                 editable?.getSpans(0, editable.length, MentionUserEntity::class.java)
-            val resultList = spans?.map {
-                it.name
+            val aiteList = spans?.map {
+                AiteInfo(
+                    it.name,
+                    it.id,
+                    editable.getSpanStart(it),
+                    if (editable.getSpanEnd(it) > 1) editable.getSpanEnd(it) - 1 else editable.getSpanEnd(it)
+                )
             }
-            infoToast(resultList.toString())
+            infoToast(aiteList.toString())
+
+            // 设置结果显示
+            val spanBuilder = SpannableStringBuilder()
+            spanBuilder.append(etInput.text)
+            if (aiteList.isNullOrEmpty()) return@setOnClickListener
+            for (aiteInfo in aiteList) {
+                // 点击Span及颜色
+                val clickSpan = object : ClickableSpan() {
+                    override fun onClick(widget: View) {
+                        aiteInfo.nickName?.let { it1 -> infoToast(it1) }
+                    }
+
+                    override fun updateDrawState(ds: TextPaint) {
+                        super.updateDrawState(ds)
+                        ds.color = Color.parseColor("#5975FF")
+                        ds.isUnderlineText = false
+                    }
+                }
+
+                spanBuilder.setSpan(
+                    clickSpan,
+                    aiteInfo.start,
+                    aiteInfo.end + 1,
+                    Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+                )
+            }
+            tvResult.movementMethod = LinkMovementMethod.getInstance()
+            tvResult.text = spanBuilder
         }
     }
+
+    data class AiteInfo(
+        var nickName: String? = null,
+        var uid: String? = null,
+        var start: Int = 0,
+        var end: Int = 0
+    )
 }

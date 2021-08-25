@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/aite_tv_selector.xml" value="0.12314814814814815" />
         <entry key="app/src/main/res/layout/activity_widget_aite.xml" value="0.11550151975683891" />
         <entry key="app/src/main/res/layout/activity_widgets_home.xml" value="0.25" />
       </map>
