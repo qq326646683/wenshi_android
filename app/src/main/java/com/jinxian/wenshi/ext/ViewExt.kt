@@ -4,6 +4,8 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.view.ViewGroup
+import com.jinxian.wenshi.util.FunctionUtil
+import com.jinxian.wenshi.util.FunctionUtil.DEFAULT_DURATION_TIME
 
 var View.visible: Boolean
     get() {
@@ -204,6 +206,15 @@ var View.endPadding: Int
         }
     }
 
-
+fun <T : View> T.setOnLimitFastClickListener(
+    duration: Long = DEFAULT_DURATION_TIME,
+    continueCall: (() -> Unit)? = null,
+    doThing: () -> Unit
+): T {
+    setOnClickListener {
+        FunctionUtil.throttle(duration, continueCall, doThing)
+    }
+    return this
+}
 
 

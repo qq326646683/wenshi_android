@@ -4,7 +4,7 @@ import java.util.*
 import kotlin.concurrent.timerTask
 
 object FunctionUtil {
-    private const val DEFAULT_DURATION_TIME = 300L
+    const val DEFAULT_DURATION_TIME = 300L
     var timer: Timer? = null
 
 
@@ -23,13 +23,20 @@ object FunctionUtil {
 
     /**
      * 节流函数: eg:300ms内，只会触发一次
+     * @duration 非必传，默认300ms
+     * @continueCall 非必传，用来连续调用时提示用户"不要快速点击"
+     * @doThing 必传
      */
-    var lastTimeMill = 0L
-    fun throttle(duration: Long = DEFAULT_DURATION_TIME, continueCall: (() -> Unit)? = null, doThing: () -> Unit) {
+    private val lastTimeMillMap = mutableMapOf<Int, Long>()
+    fun throttle(
+        duration: Long = DEFAULT_DURATION_TIME,
+        continueCall: (() -> Unit)? = null,
+        doThing: () -> Unit
+    ) {
         val currentTime = System.currentTimeMillis()
-        if (currentTime - lastTimeMill > duration) {
+        if (currentTime - (lastTimeMillMap[doThing.hashCode()] ?: 0L) > duration) {
             doThing.invoke()
-            lastTimeMill = System.currentTimeMillis()
+            lastTimeMillMap[doThing.hashCode()] = System.currentTimeMillis()
         } else {
             continueCall?.invoke()
         }
