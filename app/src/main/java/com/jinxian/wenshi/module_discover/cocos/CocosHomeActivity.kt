@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Environment
 import android.util.Log
 import androidx.appcompat.widget.AppCompatButton
+import com.cocos.bridge.CocosBridgeHelper
+import com.cocos.bridge.CocosDataListener
 import com.jinxian.wenshi.R
 import com.jinxian.wenshi.base.activity.BaseActivity
 import com.jinxian.wenshi.util.DownloadListener
@@ -13,7 +15,7 @@ import com.jinxian.wenshi.util.FileUtil
 import kotlinx.android.synthetic.main.activity_cocos_home.*
 
 class CocosHomeActivity : BaseActivity() {
-    val download1Url = "http://file.jinxianyun.com/default.zip"
+    val download1Url = "http://file.jinxianyun.com/default8.zip"
     val download2Url = "http://file.jinxianyun.com/hellococos.zip"
 
     override fun getLayoutId() = R.layout.activity_cocos_home
@@ -24,6 +26,8 @@ class CocosHomeActivity : BaseActivity() {
         }
 
         DownloadUtil.instance.addListener(listener)
+        CocosBridgeHelper.getInstance().addMainListener(cocosListenerInMain)
+
         btnDownload1.setOnClickListener {
             DownloadUtil.instance.download(download1Url)
         }
@@ -38,6 +42,13 @@ class CocosHomeActivity : BaseActivity() {
 
             updateUI(download1Url, btnDownload1, taskId, status, progress)
             updateUI(download2Url, btnDownload2, taskId, status, progress)
+        }
+    }
+
+    private val cocosListenerInMain: CocosDataListener = CocosDataListener { action, argument, callbackId ->
+        CocosBridgeHelper.log("接收InMain", action)
+        if (action == "action_appVersion") {
+            CocosBridgeHelper.getInstance().main2Cocos(action, packageManager.getPackageInfo(packageName, 0).versionName, callbackId)
         }
     }
 
@@ -93,5 +104,6 @@ class CocosHomeActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         DownloadUtil.instance.removeListener(listener)
+        CocosBridgeHelper.getInstance().removeMainListener(cocosListenerInMain)
     }
 }

@@ -6,6 +6,10 @@
         <entry key="app/src/main/res/drawable/aite_tv_selector.xml" value="0.12314814814814815" />
         <entry key="app/src/main/res/layout/activity_widget_aite.xml" value="0.11550151975683891" />
         <entry key="app/src/main/res/layout/activity_widgets_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/common_refresh_recyclerview.xml" value="0.11271529888551166" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.10587639311043566" />
+        <entry key="app/src/main/res/layout/fragment_mine.xml" value="0.11271529888551166" />
+        <entry key="app/src/main/res/layout/layout_home_tab_item.xml" value="0.11271529888551166" />
       </map>
     </option>
   </component>

@@ -48,6 +48,7 @@
         <activity android:name=".module_discover.cocos.CocosGameActivity" android:process=":cocos"/>
         <activity android:name=".module_discover.widgets.WidgetsHomeActivity"/>
         <activity android:name=".module_discover.widgets.aite.AiteWidgetActivity"/>
+        <activity android:name=".module_discover.widgets.repeat_viewpager.RepeatViewPagerActivity"/>
     </application>
 
 </manifest>
