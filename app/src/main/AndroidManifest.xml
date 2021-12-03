@@ -49,6 +49,7 @@
         <activity android:name=".module_discover.widgets.WidgetsHomeActivity"/>
         <activity android:name=".module_discover.widgets.aite.AiteWidgetActivity"/>
         <activity android:name=".module_discover.widgets.repeat_viewpager.RepeatViewPagerActivity"/>
+        <activity android:name=".module_discover.widgets.popular_recyclerview.PopularRecyclerViewActivity"/>
     </application>
 
 </manifest>
