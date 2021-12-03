@@ -9,14 +9,23 @@ import com.cocos.bridge.CocosBridgeHelper
 import com.cocos.bridge.CocosDataListener
 import com.jinxian.wenshi.R
 import com.jinxian.wenshi.base.activity.BaseActivity
+import com.jinxian.wenshi.config.Settings
+import com.jinxian.wenshi.constant.Constant
+import com.jinxian.wenshi.data.storage.Preference
 import com.jinxian.wenshi.util.DownloadListener
 import com.jinxian.wenshi.util.DownloadUtil
 import com.jinxian.wenshi.util.FileUtil
 import kotlinx.android.synthetic.main.activity_cocos_home.*
 
 class CocosHomeActivity : BaseActivity() {
-    val download1Url = "http://file.jinxianyun.com/default8.zip"
-    val download2Url = "http://file.jinxianyun.com/hellococos.zip"
+
+
+    companion object {
+        val download1Url = "http://file.jinxianyun.com/default8.zip"
+        val download2Url = "http://file.jinxianyun.com/hellococos.zip"
+        var isUrl1Succ = false;
+        var isUrl2Succ = false;
+    }
 
     override fun getLayoutId() = R.layout.activity_cocos_home
 
@@ -33,6 +42,31 @@ class CocosHomeActivity : BaseActivity() {
         }
         btnDownload2.setOnClickListener {
             DownloadUtil.instance.download(download2Url)
+        }
+
+
+        checkExit(download1Url, btnDownload1)
+        checkExit(download2Url, btnDownload2)
+    }
+
+    fun checkExit(url: String, btn: AppCompatButton) {
+        if ((url == download1Url && isUrl1Succ) || (url == download2Url && isUrl2Succ)) {
+            btn.text = "打开游戏"
+            val outPathString =
+                getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)?.absolutePath
+            btn?.setOnClickListener {
+                val intent = Intent(
+                    this@CocosHomeActivity,
+                    CocosGameActivity::class.java
+                )
+                intent.putExtra(
+                    "path",
+                    "${outPathString}/${
+                    url.split("/").last().split(".").first()
+                    }"
+                )
+                startActivity(intent)
+            }
         }
     }
 
@@ -89,7 +123,14 @@ class CocosHomeActivity : BaseActivity() {
                                     )
                                     startActivity(intent)
                                 }
-                            }
+
+                                if (url == download1Url) {
+                                    isUrl1Succ = true
+                                }
+                                if (url == download2Url) {
+                                    isUrl2Succ = true
+                                }
+                             }
                         }
                     )
                 }

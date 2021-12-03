@@ -10,7 +10,11 @@ import kotlinx.android.synthetic.main.fragment_discover.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.jinxian.wenshi.ext.startActivity
 import com.jinxian.wenshi.module_discover.cocos.CocosHomeActivity
+import com.jinxian.wenshi.module_discover.cocos.CocosHomeActivity.Companion.download1Url
+import com.jinxian.wenshi.module_discover.cocos.CocosHomeActivity.Companion.download2Url
 import com.jinxian.wenshi.module_discover.widgets.WidgetsHomeActivity
+import com.jinxian.wenshi.service.preload.PreloadCocosTask
+import com.jinxian.wenshi.service.preload.PreloadService
 
 
 class DiscoverFragment : BaseDataBindVMFragment<FragmentDiscoverBinding>() {
@@ -30,5 +34,8 @@ class DiscoverFragment : BaseDataBindVMFragment<FragmentDiscoverBinding>() {
         llWidgets.setOnClickListener {
             activity?.startActivity<WidgetsHomeActivity>()
         }
+
+        PreloadService.getInstance().backgroundExecute(PreloadCocosTask(download1Url))
+        PreloadService.getInstance().backgroundExecute(PreloadCocosTask(download2Url))
     }
 }
